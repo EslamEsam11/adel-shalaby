@@ -1,0 +1,287 @@
+:host {
+  display: block;
+  background: #000;
+  color: white;
+  font-family: sans-serif;
+}
+video {
+    width: 300px;
+    height: 400px;
+    object-fit: cover;
+}
+/* ... ستايل اللابتوب ... */
+.laptop-section {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.laptop-mockup {
+    width: 100%;
+    /* max-width: 1000px; */
+    height: 100%;
+  border-radius: 20px;
+  /* padding: 15px; */
+  box-sizing: border-box;
+}
+.laptop-screen-area {
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+  position: relative; /* (مهم جداً) */
+  overflow: hidden;   /* (مهم جداً) */
+}
+
+/* (مهم) كل العناصر absolute عشان نرصها فوق بعض */
+.final-nav, .side-links, .find-text, .image-container, 
+.logo-adel, .logo-shalaby, .orange-bg {
+  position: absolute;
+}
+
+/* 1. الـ Nav العلوي (بيظهر في الآخر) */
+.final-nav {
+  top: 15px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 20;
+  position: fixed;
+}
+.final-nav ul { list-style: none; display: flex; gap: 10px; margin: 0; padding: 5px 15px; background:#1E1E1E87; border-radius: 15px;  align-items: center; }
+.active {
+  background-color: #F4F4F43D;
+  padding: 5px;
+      border-radius: 10px;
+}
+/* 2. اللينكات الجانبية (بتظهر في الأول) */
+.side-links {
+  top: 50%;
+  left: 20px;
+  font-size: 0.9rem;
+  z-index: 10;
+    position: fixed;
+}
+.side-links p { margin: 5px 0;  font-family: Aloevera-Regular ;font-size: 22.5px;
+    line-height: 1.2;}
+
+/* 3. التكست اليمين */
+.find-text {
+  bottom: 24px;
+  right: 40px;
+  font-size: 1.8rem;
+  z-index: 10;
+}
+
+/* 4. حاوية الصور (ده العنصر اللي بيتحول) */
+.image-container {
+  /* ... (top, left, z-index... aكما هي) ... */
+  top: auto;
+  bottom: 0;
+  left: 150px;
+  width: 250px;
+  height: 100px;
+  z-index: 5;
+  display: flex;
+  gap: 10px; /* المسافة بين العناصر */
+ transform: translateY(-50%); 
+  /* (التعديل) ضيف السطر ده عشان يوسط العناصر */
+  justify-content: center;
+}
+
+/* (التعديل) هنظبط العرض بتاع الصور/الفيديوهات */
+.image-container img,
+.image-container video {
+  /* 'flex: 1' معناها "خد مساحة متساوية مع إخواتك"
+    ده بيحل محل 'width: 100%' اللي كان عامل المشكلة
+  */
+  flex: 1;
+  width: 0; /* بنبدأ العرض بـ 0 عشان flex يشتغل صح */
+  
+  /* height: 100%; */
+  object-fit: cover;
+}
+
+/* (الصورة 3) الصورتين التانيين مخفيين في الأول */
+.image-container #img2,
+.image-container #img3 {
+  opacity: 0;
+}
+
+/* 5. اللوجوهات */
+.logo-adel {
+  bottom: 80px;
+  left: 150px;
+  font-size: 2rem;
+  z-index: 10;
+}
+.logo-shalaby {
+  bottom: 30px;
+  left: 40px;
+  z-index: 15;
+  line-height: 1;
+
+}
+.logo-shalaby h2 { margin: 0; font-size: 2.5rem; }
+.logo-shalaby h3 { margin: 0; font-size: 1rem; letter-spacing: 2px; }
+.logo-shalaby-overlay img {
+  width: 100%;
+  height: 100%;
+
+
+}
+.logo-shalaby-overlay {
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #fff;
+  display: none;
+}
+
+/* 6. الخلفيات البرتقالية */
+.orange-bg {
+  left: 0;
+  right: 0;
+     height: 100%; /* ارتفاع البار */
+  background: #f36639;
+  z-index: 1; /* خلف كل حاجة */
+}
+#orange-top {
+  top: 0;
+}
+#orange-bottom {
+  bottom: 0;
+}
+
+/* السكشن اللي بعده */
+.next-section {
+ /* ارتفاع كبير للسكرول */
+  background: #000000;
+  color: #fff; /* لون الخط أبيض */
+  position: relative;
+  overflow: hidden;
+  padding: 5vh 5vw;
+}
+
+/* --- الحالة النهائية (بعد ما الأنيميشن يخلص) --- */
+
+/* حاوية الصورة (الكاوتش) */
+.imag {
+  position: absolute;
+  /* (تعديل) مكانها النهائي (فوق يمين وصغيرة) */
+      right:-54% ;
+  top: 0; /* (مثلاً) */
+  width: 25%; /* (مثلاً) عرض أصغر */
+  z-index: 5;
+  height: 500px;
+  /* (مهم) هنبدأها كبيرة ومتحركة بالـ TS */
+}
+.imag img {
+  width: 100%;
+height: 100%;
+  display: block;
+  object-fit: cover;
+      overflow: visible;
+      animation-name: spin;
+  /* مدة اللفة الواحدة (مثلاً 5 ثواني) - غيّر المدة دي زي ما تحب */
+  animation-duration: 5s;
+  /* سرعة الدوران (linear = سرعة ثابتة) */
+  animation-timing-function: linear;
+  /* كرر الحركة للأبد */
+  animation-iteration-count: infinite;
+}
+/* (ممكن نضيف زرار Shop Now هنا لو منفصل) */
+
+@keyframes spin {
+  from {
+    /* ابدأ من زاوية 0 درجة */
+    transform: rotate(0deg);
+  }
+  to {
+    /* لف لفة كاملة (360 درجة) */
+    transform: rotate(360deg);
+  }
+}
+.btn {
+  background-color:#DA3130;
+  color: white;
+  position: absolute;
+  bottom: 5%;
+  right: 12%;
+  padding:  10px 30px;
+  border-radius: 30px;
+  -webkit-border-radius: 30px;
+  -moz-border-radius: 30px;
+  -ms-border-radius: 30px;
+  -o-border-radius: 30px;
+}
+/* النص */
+.content {
+  position: absolute;
+  /* (تعديل) مكانه النهائي (تحت اللوجو والناف شمال) */
+      bottom: 0;
+ /* (مثلاً) */
+  left: 15vw; /* (مثلاً) */
+  width: 40%; /* (مثلاً) */
+  color: #fff;
+  z-index: 8;
+      Opacity: 0;
+       font-family: Aloevera-Regular ;
+    
+
+}
+.content p {
+  font-size:24px;
+  color: #fff;
+}
+.content p span {
+  font-weight: 300;
+      color: #ffffffad;
+}
+
+/* (جديد) حاوية الكروت */
+.product-cards-container {
+  position: absolute;
+  bottom: 0vh; /* لازق تحت */
+  left: 5vw;
+  right: 5vw;
+  display: flex;
+  justify-content: space-around; /* توزيع الكروت */
+  gap: 20px;
+  z-index: 12;
+   Opacity: 0
+  /* (مهم) هنبدأها مخفية ومتحركة بالـ TS */
+}
+
+
+.cards img {
+  cursor: pointer;
+}
+
+body , html {
+  overflow: hidden;
+}
+
+
+
+section {
+  height: 100vh;
+}
+
+
+
+
+
+
+
+
+
+
+
