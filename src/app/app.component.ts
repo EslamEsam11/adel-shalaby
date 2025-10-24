@@ -96,15 +96,15 @@ gsap.timeline({
   scrollTrigger: {
     trigger: ".next-section",
     start: "top top",
-    end: "+=10", 
+    end: "+=100", 
     scrub: 1,
     pin: true,
 
   }
 })
-.to(".imag", { width:"60px", height:"80px" , right: "-5%", top:"7%" })
+.to(".imag", { width:"60px", height:"80px" , right: "-7%", top:"7%" })
 .to(".logo-shalaby", { opacity: 0 ,  })
-.to(".logo-shalaby-overlay", { display:"flex",  width: "200px", height: "80px" , marginLeft:"auto", marginRight:"auto",  })
+.to(".logo-shalaby-overlay", { display:"flex",  width: "200px", height: "80px" , marginLeft:"auto", marginRight:"auto",  top:"15%" , paddingBottom:"20px"})
 .to(".content", { top:"40%" ,  bottom:"auto" , overflow:"hidden",   })
 .to(".btn", { top:"32%" ,  bottom:"auto" , overflow:"hidden",   right: "25%" , height:"auto", background:"transparent" , border:"1px solid #ffffff73",  })
 .to(".final-nav", { right: "auto", transition: "all 1.5s ease",  })
@@ -265,7 +265,7 @@ goToSection(index: number): void {
 
 
     if (this.img1 && this.img1.nativeElement) {
-      this.img1.nativeElement.muted = false;
+      this.img1.nativeElement.muted = true;
     }
   }
 
