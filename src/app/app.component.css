@@ -9,7 +9,7 @@ video {
     height: 400px;
     object-fit: cover;
 }
-/* ... ستايل اللابتوب ... */
+
 .laptop-section {
   height: 100vh;
   display: flex;
@@ -28,17 +28,17 @@ video {
   width: 100%;
   height: 100%;
   border-radius: 5px;
-  position: relative; /* (مهم جداً) */
-  overflow: hidden;   /* (مهم جداً) */
+  position: relative;
+  overflow: hidden;   
 }
 
-/* (مهم) كل العناصر absolute عشان نرصها فوق بعض */
+
 .final-nav, .side-links, .find-text, .image-container, 
 .logo-adel, .logo-shalaby, .orange-bg {
   position: absolute;
 }
 
-/* 1. الـ Nav العلوي (بيظهر في الآخر) */
+
 .final-nav {
   top: 15px;
   left: 0;
@@ -55,7 +55,7 @@ video {
   padding: 5px;
       border-radius: 10px;
 }
-/* 2. اللينكات الجانبية (بتظهر في الأول) */
+
 .side-links {
   top: 50%;
   left: 20px;
@@ -66,7 +66,7 @@ video {
 .side-links p { margin: 5px 0;  font-family: Aloevera-Regular ;font-size: 22.5px;
     line-height: 1.2;}
 
-/* 3. التكست اليمين */
+
 .find-text {
   bottom: 24px;
   right: 40px;
@@ -74,9 +74,9 @@ video {
   z-index: 10;
 }
 
-/* 4. حاوية الصور (ده العنصر اللي بيتحول) */
+
 .image-container {
-  /* ... (top, left, z-index... aكما هي) ... */
+
   top: auto;
   bottom: 0;
   left: 150px;
@@ -84,32 +84,30 @@ video {
   height: 100px;
   z-index: 5;
   display: flex;
-  gap: 10px; /* المسافة بين العناصر */
+  gap: 10px; 
  transform: translateY(-50%); 
-  /* (التعديل) ضيف السطر ده عشان يوسط العناصر */
+
   justify-content: center;
 }
 
-/* (التعديل) هنظبط العرض بتاع الصور/الفيديوهات */
+
 .image-container img,
 .image-container video {
-  /* 'flex: 1' معناها "خد مساحة متساوية مع إخواتك"
-    ده بيحل محل 'width: 100%' اللي كان عامل المشكلة
-  */
+
   flex: 1;
-  width: 0; /* بنبدأ العرض بـ 0 عشان flex يشتغل صح */
+  width: 0; 
   
   /* height: 100%; */
   object-fit: cover;
 }
 
-/* (الصورة 3) الصورتين التانيين مخفيين في الأول */
+
 .image-container #img2,
 .image-container #img3 {
   opacity: 0;
 }
 
-/* 5. اللوجوهات */
+
 .logo-adel {
   bottom: 80px;
   left: 150px;
@@ -145,13 +143,13 @@ video {
   display: none;
 }
 
-/* 6. الخلفيات البرتقالية */
+
 .orange-bg {
   left: 0;
   right: 0;
-     height: 100%; /* ارتفاع البار */
+     height: 100%; 
   background: #f36639;
-  z-index: 1; /* خلف كل حاجة */
+  z-index: 1; 
 }
 #orange-top {
   top: 0;
@@ -160,28 +158,28 @@ video {
   bottom: 0;
 }
 
-/* السكشن اللي بعده */
+
 .next-section {
- /* ارتفاع كبير للسكرول */
+
   background: #000000;
-  color: #fff; /* لون الخط أبيض */
+  color: #fff; 
   position: relative;
   overflow: hidden;
   padding: 5vh 5vw;
 }
 
-/* --- الحالة النهائية (بعد ما الأنيميشن يخلص) --- */
 
-/* حاوية الصورة (الكاوتش) */
+
+
 .imag {
   position: absolute;
-  /* (تعديل) مكانها النهائي (فوق يمين وصغيرة) */
+
       right:-54% ;
-  top: 0; /* (مثلاً) */
-  width: 25%; /* (مثلاً) عرض أصغر */
+  top: 0; 
+  width: 25%; 
   z-index: 5;
   height: 500px;
-  /* (مهم) هنبدأها كبيرة ومتحركة بالـ TS */
+
 }
 .imag img {
   width: 100%;
@@ -190,22 +188,22 @@ height: 100%;
   object-fit: cover;
       overflow: visible;
       animation-name: spin;
-  /* مدة اللفة الواحدة (مثلاً 5 ثواني) - غيّر المدة دي زي ما تحب */
+
   animation-duration: 5s;
-  /* سرعة الدوران (linear = سرعة ثابتة) */
+
   animation-timing-function: linear;
-  /* كرر الحركة للأبد */
+
   animation-iteration-count: infinite;
 }
-/* (ممكن نضيف زرار Shop Now هنا لو منفصل) */
+
 
 @keyframes spin {
   from {
-    /* ابدأ من زاوية 0 درجة */
+
     transform: rotate(0deg);
   }
   to {
-    /* لف لفة كاملة (360 درجة) */
+
     transform: rotate(360deg);
   }
 }
@@ -222,14 +220,14 @@ height: 100%;
   -ms-border-radius: 30px;
   -o-border-radius: 30px;
 }
-/* النص */
+
 .content {
   position: absolute;
-  /* (تعديل) مكانه النهائي (تحت اللوجو والناف شمال) */
+
       bottom: 0;
- /* (مثلاً) */
-  left: 15vw; /* (مثلاً) */
-  width: 40%; /* (مثلاً) */
+
+  left: 15vw; 
+  width: 40%; 
   color: #fff;
   z-index: 8;
       Opacity: 0;
@@ -246,18 +244,18 @@ height: 100%;
       color: #ffffffad;
 }
 
-/* (جديد) حاوية الكروت */
+
 .product-cards-container {
   position: absolute;
-  bottom: 0vh; /* لازق تحت */
+  bottom: 0vh; 
   left: 5vw;
   right: 5vw;
   display: flex;
-  justify-content: space-around; /* توزيع الكروت */
+  justify-content: space-around; 
   gap: 20px;
   z-index: 12;
    Opacity: 0
-  /* (مهم) هنبدأها مخفية ومتحركة بالـ TS */
+
 }
 
 

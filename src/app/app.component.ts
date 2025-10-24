@@ -2,9 +2,9 @@ import { Component, AfterViewInit, ViewChild, ElementRef, CUSTOM_ELEMENTS_SCHEMA
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { gsap } from 'gsap';
 
-// 1. (تعديل) نستدعي الإضافتين
+
 import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
-import { ScrollTrigger } from 'gsap/ScrollTrigger'; // <-- إضافة ضرورية
+import { ScrollTrigger } from 'gsap/ScrollTrigger'; 
 
 @Component({
   selector: 'app-root',
@@ -19,7 +19,7 @@ export class AppComponent implements AfterViewInit {
 
   }
 
-  // --- (ViewChilds للعناصر العادية) ---
+
   @ViewChild('finalNav') finalNav!: ElementRef<HTMLElement>;
   @ViewChild('sideLink1') sideLink1!: ElementRef<HTMLElement>;
   @ViewChild('sideLink2') sideLink2!: ElementRef<HTMLElement>;
@@ -32,10 +32,10 @@ export class AppComponent implements AfterViewInit {
   @ViewChild('orangeBottom') orangeBottom!: ElementRef<HTMLElement>;
   @ViewChild('nextSection') nextSection!: ElementRef<HTMLElement>;
 
-  // (جديد) بنجيب السكشن نفسه عشان نراقبه
+
   @ViewChild('laptopSection') laptopSection!: ElementRef<HTMLElement>;
 
-  // --- (ViewChilds للفيديوهات) ---
+
   @ViewChild('img1') img1!: ElementRef<HTMLVideoElement>;
   @ViewChild('img2') img2!: ElementRef<HTMLVideoElement>;
   @ViewChild('img3') img3!: ElementRef<HTMLVideoElement>;
@@ -43,13 +43,13 @@ export class AppComponent implements AfterViewInit {
   @ViewChild('img5') img5!: ElementRef<HTMLVideoElement>;
 
   
-  // (جديد) مصفوفة لحفظ كل الفيديوهات
+
   private allVideos: HTMLVideoElement[] = [];
 private sections: HTMLElement[] = [];
   private animating: boolean = false;
 
   ngAfterViewInit(): void {
-    // 2. (تعديل) نسجل الإضافتين
+
     gsap.registerPlugin(ScrollToPlugin, ScrollTrigger);
 
     if (!this.imageContainer || !this.img1 || !this.laptopSection) {
@@ -57,38 +57,38 @@ private sections: HTMLElement[] = [];
       return;
     }
 
-    // (جديد) نجمع الفيديوهات في مصفوفة لسهولة التحكم
+
     this.allVideos = [
       this.img1.nativeElement,
       this.img2.nativeElement,
       this.img3.nativeElement,
       this.img4.nativeElement,
-      this.img5.nativeElement // تمت إضافة الخامس
+      this.img5.nativeElement 
     ];
 
     
-this.sections = gsap.utils.toArray<HTMLElement>('.full-section'); // اسم الكلاس بتاع السكاشن
+this.sections = gsap.utils.toArray<HTMLElement>('.full-section'); 
 
     // ScrollTrigger.observe({
-    //   type: "wheel,touch", // اسمع للماوس واللمس
+    //   type: "wheel,touch", 
     //   onUp: () => this.goToPreviousSection(),
     //   onDown: () => this.goToNextSection(),
-    //   tolerance: 10, // مسافة صغيرة قبل ما يعتبرها حركة
-    //   preventDefault: true // (مهم) يمنع السكرول الطبيعي
+    //   tolerance: 10, 
+    //   preventDefault: true
     // });
-    // 3. (تعديل) يجب كتم صوت جميع الفيديوهات لضمان التشغيل التلقائي
-    this.muteAllVideos(); // <-- دالة جديدة لضمان كتم الكل
 
-    // 4. (تعديل) نشغل كل الفيديوهات (مهم عشان المتصفح يوقفهم)
+    this.muteAllVideos(); 
+
+
     this.playVideos();
 
-    // 5. (جديد) نجهز مراقب السكرول (عشان الصوت)
+
     this.setupScrollSoundControl();
 
-    // 6. (تعديل) نستخدم "setInterval" ولكن بدالة جديدة
-    setInterval(this.forcePlayOnTick.bind(this), 100); // (100 ميللي ثانية = 10 مرات في الثانية)
 
-    // 7. نبدأ الأنيميشن الرئيسي
+    setInterval(this.forcePlayOnTick.bind(this), 100); 
+
+
     this.startIntroAnimation();
     this.entranceAnimation();
 
@@ -96,11 +96,10 @@ gsap.timeline({
   scrollTrigger: {
     trigger: ".next-section",
     start: "top top",
-    end: "+=10", // ثبت السكشن لمسافة 2000 بكسل من السكرول
+    end: "+=10", 
     scrub: 1,
     pin: true,
-     // <--- ثبت السكشن ده
-    // عشان ميضيفش مسافة وهمية بعده
+
   }
 })
 .to(".imag", { width:"60px", height:"80px" , right: "-5%", top:"7%" })
@@ -112,7 +111,7 @@ gsap.timeline({
 .to(".product-cards-container", { opacity: 1 });
 
 // ScrollTrigger.create({
-//   snap: 2 / (this.sections.length - 1) // اقفز بنسبة كل سكشن
+//   snap: 2 / (this.sections.length - 1) 
 // });
   }
 
@@ -147,17 +146,17 @@ entranceAnimation(): void {
 
 }
 goToSection(index: number): void {
-    if (this.animating || index < 0 || index >= this.sections.length) return; // لو الأنيميشن شغال أو الرقم غلط، متعملش حاجة
+    if (this.animating || index < 0 || index >= this.sections.length) return; 
 
-    this.animating = true; // علّم إن الأنيميشن بدأ
+    this.animating = true; 
 
     gsap.to(window, {
       scrollTo: { y: this.sections[index], autoKill: false },
-      duration: 0.5, // مدة حركة القفز
+      duration: 0.5, 
       ease: "power2.inOut",
       onComplete: () => {
-        // لما الأنيميشن يخلص، اسمح بحركة جديدة
-        gsap.delayedCall(0.5, () => this.animating = false); // استنى نص ثانية زيادة
+
+        gsap.delayedCall(0.5, () => this.animating = false); 
       }
     });
   }
@@ -172,7 +171,7 @@ goToSection(index: number): void {
     this.goToSection(currentSectionIndex - 1);
   }
 
-  // دالة بسيطة لمعرفة السكشن الحالي (ممكن تحتاج تعديل حسب تصميمك)
+
   getCurrentSectionIndex(): number {
     let index = 0;
     const scrollY = window.scrollY;
@@ -186,12 +185,12 @@ goToSection(index: number): void {
 
 
 
-  // (جديد) دالة تشغيل الفيديوهات
+
   playVideos(): void {
     try {
       this.allVideos.forEach(video => {
         if (video) {
-          video.currentTime = 0; // نبدأ من الصفر
+          video.currentTime = 0;
           video.play().catch(e => console.warn("Video play failed", e));
         }
       });
@@ -200,50 +199,49 @@ goToSection(index: number): void {
     }
   }
 
-  // (جديد) دالة مراقبة السكرول للصوت
+
   setupScrollSoundControl(): void {
     ScrollTrigger.create({
-      trigger: this.laptopSection.nativeElement, // راقب السكشن ده
+      trigger: this.laptopSection.nativeElement, 
       start: 'top top',
-      end: 'bottom top', // أول ما يخرج من فوق
+      end: 'bottom top', 
 
-      onLeave: () => this.muteAllVideos(),     // لما نخرج -> اكتم الصوت
-      onEnterBack: () => this.unmuteAllVideos() // لما نرجع -> افتح الصوت (الفيديو الأول فقط حسب الكود الحالي)
+      onLeave: () => this.muteAllVideos(),     
+      onEnterBack: () => this.unmuteAllVideos() 
     });
   }
 
-  // (تعديل) الدالة دي هتجبر الفيديوهات تشتغل (من غير ما تلمس الوقت)
+ 
   forcePlayOnTick(): void {
     if (!this.img1 || !this.img1.nativeElement) return;
 
     try {
-      // 1. (مهم جداً) بنتأكد إن الفيديو الرئيسي شغال
+
       if (this.img1.nativeElement.paused) this.img1.nativeElement.play();
 
-      // 2. (مهم جداً) بنتأكد إن باقي الفيديوهات شغالة
+
       if (this.img2.nativeElement.paused) this.img2.nativeElement.play();
       if (this.img3.nativeElement.paused) this.img3.nativeElement.play();
       if (this.img4.nativeElement.paused) this.img4.nativeElement.play();
-      if (this.img5.nativeElement.paused) this.img5.nativeElement.play(); // تمت إضافة الخامس
+      if (this.img5.nativeElement.paused) this.img5.nativeElement.play(); 
 
     } catch (e) {
-      // (عادي يحصل أخطاء بسيطة هنا لو الفيديو لسه بيحمل)
+
     }
   }
 
-  // (تعديل) الدالة دي هتظبط الوقت (مرة واحدة بس)
+
   syncVideos(): void {
     try {
       const masterTime = this.img1.nativeElement.currentTime;
       console.log(`Syncing videos to master time: ${masterTime}`);
 
-      // 1. طبّق الوقت ده على باقي الفيديوهات (مرة واحدة)
+
       this.img2.nativeElement.currentTime = masterTime;
       this.img3.nativeElement.currentTime = masterTime;
       this.img4.nativeElement.currentTime = masterTime;
-      this.img5.nativeElement.currentTime = masterTime; // تمت إضافة الخامس
+      this.img5.nativeElement.currentTime = masterTime; 
 
-      // 2. (احتياطي) نتأكد إنهم شغالين
       this.forcePlayOnTick();
 
     } catch (e) {
@@ -251,21 +249,21 @@ goToSection(index: number): void {
     }
   }
 
-  // دوال التحكم في الصوت (كما هي في الكود المرسل)
+
   muteAllVideos(): void {
     console.log("Muting videos...");
     this.allVideos.forEach(video => { if (video) video.muted = true });
   }
-  unmuteAllVideos(): void { // هذه الدالة تفتح صوت الفيديو الأول فقط
+  unmuteAllVideos(): void { 
     console.log("Unmuting video 1 ONLY...");
 
-    // نتأكد إن الباقي مقفول
+
     if (this.img2 && this.img2.nativeElement) this.img2.nativeElement.muted = true;
     if (this.img3 && this.img3.nativeElement) this.img3.nativeElement.muted = true;
     if (this.img4 && this.img4.nativeElement) this.img4.nativeElement.muted = true;
-    if (this.img5 && this.img5.nativeElement) this.img5.nativeElement.muted = true; // تمت إضافة الخامس
+    if (this.img5 && this.img5.nativeElement) this.img5.nativeElement.muted = true;
 
-    // نفتح الفيديو الأول بس
+
     if (this.img1 && this.img1.nativeElement) {
       this.img1.nativeElement.muted = false;
     }
@@ -274,7 +272,7 @@ goToSection(index: number): void {
 
   startIntroAnimation(): void {
 
-    // ... (كل كود الـ .set() كما هو مع إضافة img5)
+
     gsap.set(this.finalNav.nativeElement, { opacity: 0 });
     gsap.set(this.sideLink1.nativeElement, { opacity: 0, y: 10 });
     gsap.set(this.sideLink2.nativeElement, { opacity: 0, y: 10 });
@@ -283,44 +281,43 @@ goToSection(index: number): void {
     gsap.set(this.imageContainer.nativeElement, { opacity: 0 });
     gsap.set(this.logoAdel.nativeElement, { opacity: 0, y: 10 });
     gsap.set(this.logoShalaby.nativeElement, { opacity: 0, y: 10 });
-    gsap.set([this.img2.nativeElement, this.img3.nativeElement , this.img4.nativeElement, this.img5.nativeElement], { display: 'none', opacity: 0 }); // تمت إضافة الخامس
+    gsap.set([this.img2.nativeElement, this.img3.nativeElement , this.img4.nativeElement, this.img5.nativeElement], { display: 'none', opacity: 0 }); 
     gsap.set(this.orangeTop.nativeElement, { yPercent: -100 });
     gsap.set(this.orangeBottom.nativeElement, { yPercent: 100 });
 
-    // إنشاء الـ Timeline
+
     const tl = gsap.timeline({ defaults: { ease: 'power2.out', duration: 0.6 } });
 
-    // ... (كل الـ Timeline بتاع الأنيميشن كما هو مع تعديل التوقيتات)
+
     tl.to(this.imageContainer.nativeElement, { opacity: 1, duration: 0.3 }, 0.5)
-      .add(() => this.unmuteAllVideos(), 0.7) // فتح صوت الفيديو الأول
+      .add(() => this.unmuteAllVideos(), 0.7) 
       .to([this.sideLink1.nativeElement, this.findText.nativeElement, this.logoAdel.nativeElement],
           { opacity: 1, y: 0, stagger: 0.2 }, 0.7)
       .to(this.sideLink2.nativeElement, { opacity: 1, y: 0 }, 1.5)
       .to(this.sideLink3.nativeElement, { opacity: 1, y: 0 }, 1.7)
       .to(this.imageContainer.nativeElement, {
-        top: '50%', // (من الكود المرسل)
-        height: '300px', // (من الكود المرسل)
+        top: '50%', 
+        height: '300px', 
         duration: 0.8
       }, 2.0)
       .to(this.imageContainer.nativeElement, {
-        left: 'auto', // (من الكود المرسل)
-        width: '100%', // (من الكود المرسل)
+        left: 'auto', 
+        width: '100%', 
         duration: 1.0
       }, 3.0)
 
-      // --- (هنا التعديل) ---
-      // 1. نضيف استدعاء دالة المزامنة
+
       .add(() => {
         this.syncVideos();
-      }, 3.2) // 2. (تعديل التوقيت) ليطابق لحظة الظهور
+      }, 3.2) 
 
-      // 3. هذا هو السطر الصحيح لإظهارهم
-      .to([this.img2.nativeElement, this.img3.nativeElement , this.img4.nativeElement, this.img5.nativeElement], { // تمت إضافة الخامس
+
+      .to([this.img2.nativeElement, this.img3.nativeElement , this.img4.nativeElement, this.img5.nativeElement], { 
         display: 'block',
         opacity: 1,
         duration: 0.5
-      }, 3.2) // 4. (تعديل التوقيت)
-      // --- (نهاية التعديل) ---
+      }, 3.2) 
+
 
       .to(this.logoAdel.nativeElement, { opacity: 0, duration: 0.3 }, 3.0)
       .to(this.logoShalaby.nativeElement, { opacity: 1, y: 0, duration: 0.6 }, 3.5)
@@ -328,18 +325,16 @@ goToSection(index: number): void {
       .to(this.orangeTop.nativeElement, { yPercent: 0, duration: 0.7 }, 4.0)
       .to(this.finalNav.nativeElement, { opacity: 1, duration: 0.5 }, 4.3);
 
-    // ###################################################
-    // ### (هذا هو التعديل المطلوب لـ "سحبة واحدة") ###
-    // ###################################################
+
     tl.to(window, {
-      duration: 0, // <-- المدة صفر تعني "فوري"
+      duration: 0, 
       scrollTo: ".next-section",
-      delay: 0.5 // <-- ممكن تقلل أو تلغي التأخير ده لو عايز
+      delay: 0.5 
     });
-    // ###################################################
 
 
-    // (أنيميشن اللوجو المرتبط بالسكرول - بدون تغيير)
+
+
     gsap.to(this.logoShalaby.nativeElement, {
       y: () => {
         const logoRect = this.logoShalaby.nativeElement.getBoundingClientRect();
@@ -363,8 +358,8 @@ goToSection(index: number): void {
         trigger: this.laptopSection.nativeElement,
         start: "bottom top",
         end: "bottom center",
-        scrub: 2.0, // (ده التوقيت اللي إنت كاتبه)
-        // markers: true,
+        scrub: 2.0, 
+       
       }
     });
   }
@@ -382,4 +377,4 @@ goToSection(index: number): void {
 
 
 
-} // نهاية الكلاس (تأكد من عدم وجود كود إضافي هنا بالخطأ)
+} 
