@@ -1,4 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
+/* @import 'swiper/swiper-bundle.min.css'; */
+
 @font-face {
     font-family: Aloevera-Regular ;
     src: url(/src/assets/font/Aloevera-Regular.otf);

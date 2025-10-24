@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "adel-shalaby": {
+    "mediaZone": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/adel-shalaby",
+            "outputPath": "dist/media-zone",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -24,12 +24,21 @@
               {
                 "glob": "**/*",
                 "input": "public"
+              },
+              {
+                "glob": "**/*",
+                "input": "src/assets",
+                "output": "assets"
               }
             ],
             "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+                 "node_modules/swiper/swiper-bundle.min.css",
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": ["node_modules/bootstrap/dist/js/bootstrap.min.js",
+            "node_modules/swiper/swiper-bundle.min.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -59,10 +68,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "adel-shalaby:build:production"
+              "buildTarget": "mediaZone:build:production"
             },
             "development": {
-              "buildTarget": "adel-shalaby:build:development"
+              "buildTarget": "mediaZone:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -82,6 +91,11 @@
               {
                 "glob": "**/*",
                 "input": "public"
+              },
+              {
+                "glob": "**/*",
+                "input": "src/assets",
+                "output": "assets"
               }
             ],
             "styles": [
