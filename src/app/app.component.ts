@@ -106,7 +106,7 @@ gsap.timeline({
 .to(".logo-shalaby", { opacity: 0 ,  })
 .to(".next-section", { overflow:"visible"  })
 .to(".logo-shalaby-overlay", { display:"flex",  width: "190px", height: "63px" , marginLeft:"auto", marginRight:"auto",  top:"17%" , marginBottom:"20px"})
-.to(".content", { top:"46%" ,  bottom:"auto" , overflow:"hidden", fontSize:"20px"  ,  })
+.to(".content", { top:"41%" ,  bottom:"auto" , overflow:"hidden", fontSize:"20px"  ,  })
 .to(".content p", {  fontSize:"25px"  ,  })
 .to(".btn", { top:"32%" ,  bottom:"auto" , overflow:"hidden",   right: "9%" , height:"auto", background:"transparent" , border:"1px solid #ffffff73",  })
 .to(".final-nav", { right: "auto", transition: "all 1.5s ease",  })
@@ -138,7 +138,7 @@ entranceAnimation(): void {
             Opacity: 1,
         scrollTrigger: {
           trigger: ".imag",
-          start: "top 30%",
+          start: "top 35%",
           scrub: 1,
       
         }
