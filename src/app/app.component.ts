@@ -106,7 +106,8 @@ gsap.timeline({
 .to(".logo-shalaby", { opacity: 0 ,  })
 .to(".next-section", { overflow:"visible"  })
 .to(".logo-shalaby-overlay", { display:"flex",  width: "200px", height: "80px" , marginLeft:"auto", marginRight:"auto",  top:"15%" , paddingBottom:"20px"})
-.to(".content", { top:"40%" ,  bottom:"auto" , overflow:"hidden",   })
+.to(".content", { top:"40%" ,  bottom:"auto" , overflow:"hidden", fontSize:"20px"  ,  })
+.to(".content p", {  fontSize:"25px"  ,  })
 .to(".btn", { top:"32%" ,  bottom:"auto" , overflow:"hidden",   right: "9%" , height:"auto", background:"transparent" , border:"1px solid #ffffff73",  })
 .to(".final-nav", { right: "auto", transition: "all 1.5s ease",  })
 .to(".product-cards-container", { opacity: 1 });
@@ -137,7 +138,7 @@ entranceAnimation(): void {
             Opacity: 1,
         scrollTrigger: {
           trigger: ".imag",
-          start: "top 80%",
+          start: "top 30%",
           scrub: 1,
       
         }
