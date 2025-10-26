@@ -227,33 +227,36 @@ height: 100%;
       bottom: 0;
 
   left: 15vw; 
-  width: 40%; 
+  width: 56%; 
   color: #fff;
   z-index: 8;
-      Opacity: 0;
+      /* Opacity: 0; */
        font-family: Aloevera-Regular ;
     
 
 }
 .content p {
-  font-size:24px;
+  font-size:30px;
   color: #fff;
+      padding-top: 40px;
 }
 .content p span {
   font-weight: 300;
-      color: #ffffffad;
+      color: #ffffff8a;
 }
-
+.content p  .fw-color {
+     color: #ffffff42;
+}
 
 .product-cards-container {
   position: absolute;
-  bottom: 0vh; 
+  bottom:-10vh; 
   left: 5vw;
   right: 5vw;
   display: flex;
   justify-content: center; 
   gap: 40px;
-  z-index: 12;
+  z-index: 1;
    Opacity: 0
 
 }

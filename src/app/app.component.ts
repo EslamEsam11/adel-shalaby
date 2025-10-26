@@ -102,11 +102,12 @@ gsap.timeline({
 
   }
 })
-.to(".imag", { width:"60px", height:"80px" , right: "-7%", top:"7%" })
+.to(".imag", { width:"60px", height:"80px" , right: "-20%", top:"3%" })
 .to(".logo-shalaby", { opacity: 0 ,  })
+.to(".next-section", { overflow:"visible"  })
 .to(".logo-shalaby-overlay", { display:"flex",  width: "200px", height: "80px" , marginLeft:"auto", marginRight:"auto",  top:"15%" , paddingBottom:"20px"})
 .to(".content", { top:"40%" ,  bottom:"auto" , overflow:"hidden",   })
-.to(".btn", { top:"32%" ,  bottom:"auto" , overflow:"hidden",   right: "25%" , height:"auto", background:"transparent" , border:"1px solid #ffffff73",  })
+.to(".btn", { top:"32%" ,  bottom:"auto" , overflow:"hidden",   right: "9%" , height:"auto", background:"transparent" , border:"1px solid #ffffff73",  })
 .to(".final-nav", { right: "auto", transition: "all 1.5s ease",  })
 .to(".product-cards-container", { opacity: 1 });
 
