@@ -284,7 +284,7 @@ goToSection(index: number): void {
     gsap.set(this.logoAdel.nativeElement, { opacity: 0, y: 10 });
     gsap.set(this.logoShalaby.nativeElement, { opacity: 0, y: 10 });
     gsap.set([this.img2.nativeElement, this.img3.nativeElement , this.img4.nativeElement, this.img5.nativeElement], { display: 'none', opacity: 0 }); 
-    gsap.set(this.orangeTop.nativeElement, { yPercent: -100 });
+    gsap.set(this.orangeTop.nativeElement, { yPercent: -900 });
     gsap.set(this.orangeBottom.nativeElement, { yPercent: 100 });
 
 
@@ -363,7 +363,9 @@ goToSection(index: number): void {
         scrub: 2.0, 
        
       }
+      
     });
+    
   }
 
 

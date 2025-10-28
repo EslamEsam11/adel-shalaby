@@ -76,18 +76,20 @@ video {
 
 
 .image-container {
-
-  top: auto;
-  bottom: 0;
-  left: 150px;
-  width: 250px;
-  height: 100px;
-  z-index: 5;
-  display: flex;
-  gap: 10px; 
- transform: translateY(-50%); 
-
-  justify-content: center;
+ top: auto;
+ bottom: 0;
+ left: 150px;
+ width: 250px;
+ height: 100px;
+ z-index: 5;
+ display: flex;
+ gap: 10px;
+ transform:translateY(-74%);
+ justify-content: center;
+ -webkit-transform:translateY(-74%);
+ -moz-transform:translateY(-74%);
+ -ms-transform:translateY(-74%);
+ -o-transform:translateY(-74%);
 }
 
 
@@ -121,6 +123,11 @@ video {
   line-height: 1;
 
 }
+.logo-shalaby img {
+  width: 500px;
+
+}
+
 .logo-shalaby h2 { margin: 0; font-size: 2.5rem; }
 .logo-shalaby h3 { margin: 0; font-size: 1rem; letter-spacing: 2px; }
 .logo-shalaby-overlay img {
