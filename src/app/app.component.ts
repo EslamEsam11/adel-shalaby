@@ -53,7 +53,6 @@ private sections: HTMLElement[] = [];
     gsap.registerPlugin(ScrollToPlugin, ScrollTrigger);
 
     if (!this.imageContainer || !this.img1 || !this.laptopSection) {
-      console.error("العناصر غير موجودة! (تأكد من وجود #laptopSection)");
       return;
     }
 
@@ -102,7 +101,7 @@ gsap.timeline({
 
   }
 })
-.to(".imag", { width:"60px", height:"80px" , right: "-20%", top:"3%" })
+.to(".imag", { width:"60px", height:"80px" , right: "-20%", top:"10%" })
 .to(".logo-shalaby", { opacity: 0 ,  })
 .to(".next-section", { overflow:"visible"  })
 .to(".logo-shalaby-overlay", { display:"flex",  width: "190px", height: "63px" , marginLeft:"auto", marginRight:"auto",  top:"17%" , marginBottom:"20px"})
@@ -122,7 +121,7 @@ entranceAnimation(): void {
       gsap.to(".imag", {
         // top: "10vh",
         x: "-52vw",
-        y: "15vw",
+        y: "10vw",
         // right:"-63%",
         // height: "500px",
         duration: 1.5,
@@ -138,7 +137,7 @@ entranceAnimation(): void {
             Opacity: 1,
         scrollTrigger: {
           trigger: ".imag",
-          start: "top 35%",
+          start: "top 10%",
           scrub: 1,
       
         }
@@ -193,11 +192,11 @@ goToSection(index: number): void {
       this.allVideos.forEach(video => {
         if (video) {
           video.currentTime = 0;
-          video.play().catch(e => console.warn("Video play failed", e));
+          video.play().catch();
         }
       });
     } catch(e) {
-      console.error("Error playing videos", e);
+
     }
   }
 
@@ -236,7 +235,6 @@ goToSection(index: number): void {
   syncVideos(): void {
     try {
       const masterTime = this.img1.nativeElement.currentTime;
-      console.log(`Syncing videos to master time: ${masterTime}`);
 
 
       this.img2.nativeElement.currentTime = masterTime;
@@ -247,17 +245,17 @@ goToSection(index: number): void {
       this.forcePlayOnTick();
 
     } catch (e) {
-      console.error("Error syncing videos:", e);
+
     }
   }
 
 
   muteAllVideos(): void {
-    console.log("Muting videos...");
+
     this.allVideos.forEach(video => { if (video) video.muted = true });
   }
   unmuteAllVideos(): void { 
-    console.log("Unmuting video 1 ONLY...");
+
 
 
     if (this.img2 && this.img2.nativeElement) this.img2.nativeElement.muted = true;
@@ -343,7 +341,7 @@ goToSection(index: number): void {
         const initialLogoTopDoc = window.scrollY + logoRect.top;
         const nextSectionRect = this.nextSection.nativeElement.getBoundingClientRect();
         const nextSectionTopDoc = window.scrollY + nextSectionRect.top;
-        const targetLogoTopDoc = nextSectionTopDoc + (nextSectionRect.height / 2) - (logoRect.height / 2);
+        const targetLogoTopDoc = nextSectionTopDoc + (nextSectionRect.width / 3.7) - (logoRect.height / 2);
         const translationY = targetLogoTopDoc - initialLogoTopDoc;
         return translationY;
       },

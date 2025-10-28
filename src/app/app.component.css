@@ -233,7 +233,7 @@ height: 100%;
 
       bottom: 0;
 
-  left: 15vw; 
+  left: 8vw; 
   width: 56%; 
   color: #fff;
   z-index: 8;
@@ -243,7 +243,7 @@ height: 100%;
 
 }
 .content p {
-  font-size:30px;
+  font-size:24px;
   color: #fff;
 
 }
