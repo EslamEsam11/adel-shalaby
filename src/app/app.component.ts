@@ -286,10 +286,10 @@ goToSection(index: number): void {
     gsap.set(this.orangeBottom.nativeElement, { yPercent: 100 });
 
 
-    const tl = gsap.timeline({ defaults: { ease: 'power2.out', duration: 0.6 } });
+    const tl = gsap.timeline({ defaults: { ease: 'power2.out', duration: 3.6 } });
 
 
-    tl.to(this.imageContainer.nativeElement, { opacity: 1, duration: 0.3 }, 0.5)
+    tl.to(this.imageContainer.nativeElement, { opacity: 1, duration: 5.3 }, 0.5)
       .add(() => this.unmuteAllVideos(), 0.7) 
       .to([this.sideLink1.nativeElement, this.findText.nativeElement, this.logoAdel.nativeElement],
           { opacity: 1, y: 0, stagger: 0.2 }, 0.7)
@@ -298,12 +298,12 @@ goToSection(index: number): void {
       .to(this.imageContainer.nativeElement, {
         top: '50%', 
         height: '300px', 
-        duration: 0.8
+        duration: 3.8
       }, 2.0)
       .to(this.imageContainer.nativeElement, {
         left: 'auto', 
         width: '100%', 
-        duration: 1.0
+        duration: 2.0
       }, 3.0)
 
 
@@ -321,8 +321,8 @@ goToSection(index: number): void {
 
       .to(this.logoAdel.nativeElement, { opacity: 0, duration: 0.3 }, 3.0)
       .to(this.logoShalaby.nativeElement, { opacity: 1, y: 0, duration: 0.6 }, 3.5)
-      .to(this.orangeBottom.nativeElement, { yPercent: 0, duration: 0.7 }, 3.5)
-      .to(this.orangeTop.nativeElement, { yPercent: 0, duration: 0.7 }, 4.0)
+      .to(this.orangeBottom.nativeElement, { yPercent: 0, duration: 2.7 }, 3.5)
+      .to(this.orangeTop.nativeElement, { yPercent: 0, duration: 2.7 }, 4.0)
       .to(this.finalNav.nativeElement, { opacity: 1, duration: 0.5 }, 4.3);
 
 
